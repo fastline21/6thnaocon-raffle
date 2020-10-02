@@ -13,31 +13,38 @@ import Participants from './components/participants/Participants';
 import AddBtn from './components/layouts/AddBtn';
 import AddParticipantModal from './components/participants/AddParticipantModal';
 import Raffle from './components/raffle/Raffle';
+import Winners from './components/winners/Winners';
 
 const App = () => {
-    useEffect(() => {
-        // Init Materialize JS
-        M.AutoInit();
-    });
+	useEffect(() => {
+		// Init Materialize JS
+		M.AutoInit();
+	});
 
-    return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <Fragment>
-                    <Switch>
-                        <Route exact path="/" component={Raffle} />
-                        <Route path="/participants">
-                            <div className="container">
-                                <AddBtn />
-                                <AddParticipantModal />
-                                <Participants />
-                            </div>
-                        </Route>
-                    </Switch>
-                </Fragment>
-            </BrowserRouter>
-        </Provider>
-    );
+	return (
+		<Provider store={store}>
+			<BrowserRouter>
+				<Fragment>
+					<Switch>
+						<Route exact path='/' component={Raffle} />
+						<Route path='/participants'>
+							<div className='container'>
+								<AddBtn />
+								<AddParticipantModal />
+								<Participants />
+							</div>
+						</Route>
+						<Route path='/winners'>
+							<div className='container'>
+								<AddBtn />
+								<Winners />
+							</div>
+						</Route>
+					</Switch>
+				</Fragment>
+			</BrowserRouter>
+		</Provider>
+	);
 };
 
 export default App;

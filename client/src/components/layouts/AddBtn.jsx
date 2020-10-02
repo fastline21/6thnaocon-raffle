@@ -1,26 +1,78 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const AddBtn = () => {
-    return (
-        <div className="fixed-action-btn">
-            <a
-                href="#add-log-modal"
-                className="btn-floating btn-large blue darken-2 modal-trigger"
-            >
-                <i className="large material-icons">add</i>
-            </a>
-            <ul>
-                <li>
-                    <a
-                        href="/winner"
-                        className="btn-floating green modal-trigger"
-                    >
-                        <i className="material-icons">emoji_events</i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    );
+// Actions
+import { clearWinners } from './../../state/actions/winnerAction';
+
+const AddBtn = ({ clearWinners }) => {
+	const location = useLocation();
+	const { pathname } = location;
+	return (
+		<div className='fixed-action-btn'>
+			{pathname.includes('participants') && (
+				<Fragment>
+					<a
+						href='/'
+						className='btn-floating btn-large blue darken-2 modal-trigger'
+					>
+						<i className='large material-icons'>home</i>
+					</a>
+					<ul>
+						<li>
+							<a
+								href='#add-log-modal'
+								className='btn-floating amber modal-trigger'
+							>
+								<i className='large material-icons'>add</i>
+							</a>
+						</li>
+						<li>
+							<a
+								href='/winners'
+								className='btn-floating green modal-trigger'
+							>
+								<i className='material-icons'>emoji_events</i>
+							</a>
+						</li>
+					</ul>
+				</Fragment>
+			)}
+			{pathname.includes('winners') && (
+				<Fragment>
+					<a
+						href='/'
+						className='btn-floating btn-large blue darken-2 modal-trigger'
+					>
+						<i className='large material-icons'>home</i>
+					</a>
+					<ul>
+						<li>
+							<button
+								onClick={clearWinners}
+								className='btn-floating red modal-trigger'
+							>
+								<i className='material-icons'>clear</i>
+							</button>
+						</li>
+						<li>
+							<a
+								href='/participants'
+								className='btn-floating green modal-trigger'
+							>
+								<i className='material-icons'>group</i>
+							</a>
+						</li>
+					</ul>
+				</Fragment>
+			)}
+		</div>
+	);
 };
 
-export default AddBtn;
+AddBtn.propTypes = {
+	clearWinners: PropTypes.func.isRequired,
+};
+
+export default connect(null, { clearWinners })(AddBtn);

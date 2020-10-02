@@ -1,15 +1,33 @@
 body {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 #raffle {
-    background-image: url('./images/raffle_bg.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
+	background-image: url('./images/raffle_bg.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
 }
 
 .name {
-    width: 100%;
+	width: 100%;
+}
+
+.display-enter,
+.display-appear {
+	top: var(--menu-starting-top);
+	width: var(--toggler-width);
+	max-height: var(--toggler-height);
+	color: var(--fade-from-color);
+	background-color: var(--toggler-bg-color);
+}
+.display-enter-active,
+.display-appear-active {
+	top: var(--menu-ending-top);
+	width: var(--menu-width);
+	max-height: var(--menu-max-height);
+	color: var(--fade-to-color);
+	background-color: var(--menu-bg-color);
+	transition: all var(--timeout);
 }
