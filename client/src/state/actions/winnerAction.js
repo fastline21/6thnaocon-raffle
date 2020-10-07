@@ -31,6 +31,7 @@ export const getWinner = () => async (dispatch) => {
 // Display winner
 export const getWinners = () => async (dispatch) => {
 	try {
+		setShow()(dispatch);
 		const res = await axios.get('/api/winner');
 		dispatch({
 			type: GET_WINNERS,
@@ -44,15 +45,16 @@ export const getWinners = () => async (dispatch) => {
 	}
 };
 
-export const setShow = () => {
-	return {
+export const setShow = () => (dispatch) => {
+	dispatch({
 		type: SET_SHOW,
-	};
+	});
 };
 
 // Clear winners
 export const clearWinners = () => async (dispatch) => {
 	try {
+		setShow()(dispatch);
 		await axios.delete('/api/winner');
 		dispatch({
 			type: CLEAR_WINNERS,

@@ -30,11 +30,13 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				winners: action.payload,
+				show: true,
 			};
 		case CLEAR_WINNERS:
 			return {
 				...state,
-				winners: null,
+				winners: [],
+				show: true,
 			};
 		case SET_SHOW:
 			return {
