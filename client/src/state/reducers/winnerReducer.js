@@ -4,6 +4,7 @@ import {
 	WINNERS_ERROR,
 	SET_SHOW,
 	CLEAR_WINNERS,
+	SET_DATE,
 } from './../actions/types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
 	error: null,
 	show: false,
 	winners: null,
+	date: Date.now(),
 };
 
 export default (state = initialState, action) => {
@@ -37,6 +39,11 @@ export default (state = initialState, action) => {
 				...state,
 				winners: [],
 				show: true,
+			};
+		case SET_DATE:
+			return {
+				...state,
+				date: action.payload,
 			};
 		case SET_SHOW:
 			return {

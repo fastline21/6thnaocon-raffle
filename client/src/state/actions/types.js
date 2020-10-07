@@ -7,3 +7,4 @@ export const WINNERS_ERROR = 'WINNERS_ERROR';
 export const SET_SHOW = 'SET_SHOW';
 export const GET_WINNERS = 'GET_WINNERS';
 export const CLEAR_WINNERS = 'CLEAR_WINNERS';
+export const SET_DATE = 'SET_DATE';

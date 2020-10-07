@@ -13,7 +13,7 @@ const Winners = ({ getWinners, winnerState: { winners, show } }) => {
 		new Date().toISOString().slice(0, 10)
 	);
 	useEffect(() => {
-		getWinners();
+		getWinners(dateDraw);
 
 		// eslint-disable-next-line
 	}, []);
@@ -21,6 +21,7 @@ const Winners = ({ getWinners, winnerState: { winners, show } }) => {
 	const onChange = (e) => {
 		const { value } = e.target;
 		setDateDraw(value);
+		getWinners(value);
 	};
 
 	if (!show || winners === null) {

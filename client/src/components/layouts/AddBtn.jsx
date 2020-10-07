@@ -6,34 +6,34 @@ import PropTypes from 'prop-types';
 // Actions
 import { clearWinners } from './../../state/actions/winnerAction';
 
-const AddBtn = ({ clearWinners }) => {
+const AddBtn = ({ clearWinners, winnerState: { date } }) => {
 	const location = useLocation();
 	const { pathname } = location;
 	return (
-		<div className='fixed-action-btn'>
+		<div className="fixed-action-btn">
 			{pathname.includes('participants') && (
 				<Fragment>
 					<a
-						href='/'
-						className='btn-floating btn-large blue darken-2 modal-trigger'
+						href="/"
+						className="btn-floating btn-large blue darken-2 modal-trigger"
 					>
-						<i className='large material-icons'>home</i>
+						<i className="large material-icons">home</i>
 					</a>
 					<ul>
 						<li>
 							<a
-								href='#add-log-modal'
-								className='btn-floating amber modal-trigger'
+								href="#add-log-modal"
+								className="btn-floating amber modal-trigger"
 							>
-								<i className='large material-icons'>add</i>
+								<i className="large material-icons">add</i>
 							</a>
 						</li>
 						<li>
 							<a
-								href='/winners'
-								className='btn-floating green modal-trigger'
+								href="/winners"
+								className="btn-floating green modal-trigger"
 							>
-								<i className='material-icons'>emoji_events</i>
+								<i className="material-icons">emoji_events</i>
 							</a>
 						</li>
 					</ul>
@@ -42,26 +42,26 @@ const AddBtn = ({ clearWinners }) => {
 			{pathname.includes('winners') && (
 				<Fragment>
 					<a
-						href='/'
-						className='btn-floating btn-large blue darken-2 modal-trigger'
+						href="/"
+						className="btn-floating btn-large blue darken-2 modal-trigger"
 					>
-						<i className='large material-icons'>home</i>
+						<i className="large material-icons">home</i>
 					</a>
 					<ul>
 						<li>
 							<button
-								onClick={clearWinners}
-								className='btn-floating red modal-trigger'
+								onClick={() => clearWinners(date)}
+								className="btn-floating red modal-trigger"
 							>
-								<i className='material-icons'>clear</i>
+								<i className="material-icons">clear</i>
 							</button>
 						</li>
 						<li>
 							<a
-								href='/participants'
-								className='btn-floating green modal-trigger'
+								href="/participants"
+								className="btn-floating green modal-trigger"
 							>
-								<i className='material-icons'>group</i>
+								<i className="material-icons">group</i>
 							</a>
 						</li>
 					</ul>
@@ -75,4 +75,8 @@ AddBtn.propTypes = {
 	clearWinners: PropTypes.func.isRequired,
 };
 
-export default connect(null, { clearWinners })(AddBtn);
+const mapStateToProps = (state) => ({
+	winnerState: state.winnerState,
+});
+
+export default connect(mapStateToProps, { clearWinners })(AddBtn);

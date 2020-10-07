@@ -5,6 +5,7 @@ import {
 	SET_SHOW,
 	GET_WINNERS,
 	CLEAR_WINNERS,
+	SET_DATE,
 } from './types';
 
 // Get winner
@@ -29,10 +30,11 @@ export const getWinner = () => async (dispatch) => {
 };
 
 // Display winner
-export const getWinners = () => async (dispatch) => {
+export const getWinners = (date) => async (dispatch) => {
 	try {
 		setShow()(dispatch);
-		const res = await axios.get('/api/winner');
+		setDate(date)(dispatch);
+		const res = await axios.get('/api/winner?date=' + date);
 		dispatch({
 			type: GET_WINNERS,
 			payload: res.data,
@@ -51,11 +53,18 @@ export const setShow = () => (dispatch) => {
 	});
 };
 
+export const setDate = (date) => (dispatch) => {
+	dispatch({
+		type: SET_DATE,
+		payload: date,
+	});
+};
+
 // Clear winners
-export const clearWinners = () => async (dispatch) => {
+export const clearWinners = (date) => async (dispatch) => {
 	try {
 		setShow()(dispatch);
-		await axios.delete('/api/winner');
+		await axios.delete('/api/winner?date=' + date);
 		dispatch({
 			type: CLEAR_WINNERS,
 		});
